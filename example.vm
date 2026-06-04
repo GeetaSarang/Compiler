@@ -1,0 +1,88 @@
+// ---- function Calculator.sum ----
+function Calculator.sum 2
+push constant 0
+pop local 0
+push constant 1
+pop local 1
+label SS_L0
+push local 1
+push argument 0
+lt
+not
+if-goto SS_L1
+push local 0
+push local 1
+add
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+goto SS_L0
+label SS_L1
+push local 0
+push argument 0
+add
+pop local 0
+push local 0
+return
+// ---- function Calculator.maximum ----
+function Calculator.maximum 0
+push argument 0
+push argument 1
+gt
+not
+if-goto SS_L2
+push argument 0
+return
+goto SS_L3
+label SS_L2
+push argument 1
+return
+label SS_L3
+// ---- function Calculator.factorial ----
+function Calculator.factorial 0
+push argument 0
+push constant 2
+lt
+not
+if-goto SS_L4
+push constant 1
+return
+goto SS_L5
+label SS_L4
+label SS_L5
+push argument 0
+push argument 0
+push constant 1
+sub
+call Calculator.factorial 1
+call Math.multiply 2
+return
+// ---- function Calculator.main ----
+function Calculator.main 3
+push constant 10
+call Calculator.sum 1
+pop local 0
+push constant 42
+push constant 17
+call Calculator.maximum 2
+pop local 1
+push constant 5
+call Calculator.factorial 1
+pop local 2
+push static 0
+push constant 1
+add
+pop static 0
+push local 0
+call Output.printInt 1
+pop temp 0
+push local 1
+call Output.printInt 1
+pop temp 0
+push local 2
+call Output.printInt 1
+pop temp 0
+push constant 0
+return
